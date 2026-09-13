@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Estimator from '../components/Estimator.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+
+<Layout
+  title="Sanjeev Choudhary — WordPress, PHP, Shopify & SEO Expert"
+  description="Senior WordPress, PHP, Shopify & SEO Expert with 12+ years experience and 650+ websites delivered. Specializing in Elementor Pro, Shopify 2.0 Liquid, On-Page & Off-Page SEO, Keyword Research, and 95+ PageSpeed."
+>
+  <Hero />
+  <Stats />
+  <ServicesGrid showAll={false} />
+  <PortfolioGrid limit={6} showFilters={false} />
+  <Testimonials />
+  <Estimator />
+  <CtaBanner />
+</Layout>

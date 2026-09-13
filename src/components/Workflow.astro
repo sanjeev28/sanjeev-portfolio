@@ -1,0 +1,58 @@
+---
+const steps = [
+  {
+    num: "STEP 01",
+    title: "Discovery",
+    desc: "Reviewing your goals, design preferences, and competitor reference sites.",
+    color: "text-indigo-400"
+  },
+  {
+    num: "STEP 02",
+    title: "Architecture",
+    desc: "Setting up the clean layout structure, sitemap, and asset preparation.",
+    color: "text-cyan-400"
+  },
+  {
+    num: "STEP 03",
+    title: "Development",
+    desc: "Coding in Elementor/Shopify Liquid/Astro with custom responsive styles.",
+    color: "text-emerald-400"
+  },
+  {
+    num: "STEP 04",
+    title: "Speed Audit",
+    desc: "Comprehensive 95+ PageSpeed, mobile testing, and security hardening.",
+    color: "text-purple-400"
+  },
+  {
+    num: "STEP 05",
+    title: "Launch & Support",
+    desc: "Live deployment plus 30 days of free ongoing support and bug warranty.",
+    color: "text-rose-400"
+  }
+];
+---
+
+<section class="py-20 bg-slate-950/60 border-t border-slate-800/80 relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">
+        Workflow
+      </div>
+      <h2 class="text-3xl font-extrabold text-white">How We Work Together</h2>
+      <p class="text-slate-400 text-sm mt-2">A transparent 5-step delivery process with zero surprises.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+      {steps.map(s => (
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center flex flex-col justify-between">
+          <div>
+            <div class={`text-xs font-mono font-bold mb-2 ${s.color}`}>{s.num}</div>
+            <h4 class="text-base font-bold text-white mb-2">{s.title}</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

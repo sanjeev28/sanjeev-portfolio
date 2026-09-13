@@ -1,0 +1,73 @@
+---
+const faqs = [
+  {
+    q: "Can an Elementor website actually achieve 90+ Google PageSpeed?",
+    a: "Yes, absolutely! The main issue with default Elementor is nested section wrappers and heavy third-party addons. We build using Elementor Flexbox Containers, turn on Elementor's native performance experiments, configure server-level LiteSpeed / WP Rocket caching with critical CSS, and serve WebP images. This consistently produces 90–98+ scores on Google PageSpeed Insights."
+  },
+  {
+    q: "What services do you provide for Shopify?",
+    a: "I provide end-to-end Shopify 2.0 services: custom Liquid theme coding, high-converting product page design, AJAX sliding cart implementation, third-party app integration, and full migrations from WordPress/WooCommerce to Shopify."
+  },
+  {
+    q: "Do you write custom PHP code or only use page builders?",
+    a: "I am a trained PHP developer with 2 full years of software house experience at Nextpage IT Solutions before freelancing. When page builders fall short, I write custom PHP plugins, register custom post types/taxonomies, connect third-party REST APIs, and create lightweight custom shortcodes."
+  },
+  {
+    q: "What is your typical project delivery turnaround time?",
+    a: "Standard 5-page WordPress or Shopify websites take between 5 to 7 business days. Landing pages take 2 to 3 days, and speed optimization audits take 24 to 48 hours. Urgent turnaround is always available on request."
+  },
+  {
+    q: "Why use Headless WordPress with Astro over regular WordPress?",
+    a: "Headless WordPress decouples the frontend from the backend. Your visitors get pure static HTML compiled by Astro that loads in under 0.3s globally, gets 100/100 on PageSpeed, and is completely immune to database hacking. Meanwhile, you still get the comfortable, familiar WordPress admin dashboard to manage all your blog posts and portfolio projects!"
+  }
+];
+---
+
+<section id="faq" class="py-20 relative z-10">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">
+        Answers & Clarity
+      </div>
+      <h2 class="text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
+      <p class="text-slate-400 text-sm mt-2">Answers to common inquiries regarding speed, platforms, and workflows.</p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((f, i) => (
+        <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden">
+          <button class="faq-trigger w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer">
+            <span class="text-base font-bold text-white">{f.q}</span>
+            <i class="fa-solid fa-chevron-down faq-icon text-indigo-400 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-3">
+            {f.a}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function initFaq() {
+    const triggers = document.querySelectorAll('.faq-trigger');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+        const isHidden = answer.classList.contains('hidden');
+
+        // Close all others
+        document.querySelectorAll('.faq-answer').forEach(ans => ans.classList.add('hidden'));
+        document.querySelectorAll('.faq-icon').forEach(ic => ic.classList.remove('rotate-180'));
+
+        if (isHidden) {
+          answer.classList.remove('hidden');
+          icon.classList.add('rotate-180');
+        }
+      });
+    });
+  })();
+</script>

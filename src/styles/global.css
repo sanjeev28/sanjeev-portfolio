@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #030712;
+    --bg-secondary: #0b0f19;
+    --card-bg: rgba(15, 23, 42, 0.65);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-indigo: #6366f1;
+    --accent-cyan: #06b6d4;
+    --accent-emerald: #10b981;
+    --header-bg: rgba(3, 7, 18, 0.85);
+  }
+
+  html.light {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --header-bg: rgba(255, 255, 255, 0.9);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.18);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+/* Light Theme Overrides */
+html.light .glass-card {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .glass-card:hover {
+  border-color: #6366f1 !important;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.12);
+}
+
+html.light h1, html.light h2, html.light h3, html.light h4, html.light h5, html.light h6 {
+  color: #0f172a !important;
+}
+
+html.light p {
+  color: #475569 !important;
+}
+
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-300,
+html.light .text-slate-200 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-950\/60,
+html.light .bg-slate-950\/40,
+html.light .bg-slate-950 {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .border-slate-800,
+html.light .border-slate-800\/80 {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light select, html.light input, html.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* Adaptive Logo: Pure White in Dark Mode, Deep Pitch Black in Bright (Light) Mode */
+.site-logo {
+  transition: filter 0.25s ease;
+}
+
+html.light .site-logo {
+  filter: brightness(0) saturate(100%) !important;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #4f46e5 50%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Particles Canvas */
+#particles-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Code Terminal Developer Card - Always Dark for IDE Aesthetic */
+.developer-code-card {
+  background: rgba(10, 15, 30, 0.95) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+}
+
+.developer-code-card * {
+  color: inherit;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Typing cursor animation */
+.typing-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 1.15em;
+  background-color: #22d3ee;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  border-radius: 1px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float 6s ease-in-out infinite reverse;
+}

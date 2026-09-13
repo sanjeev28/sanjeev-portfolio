@@ -1,0 +1,80 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "Sanjeev Choudhary — WordPress, PHP, Shopify & SEO Expert",
+  description = "Senior WordPress, PHP & Shopify Expert with 12+ years experience. 650+ websites delivered. Specializing in Elementor Pro, Shopify 2.0 Liquid, On-Page & Off-Page SEO, Keyword Research, and 95+ PageSpeed optimization.",
+  canonicalURL = Astro.url.href,
+  ogImage = "/assets/img/logo.png"
+} = Astro.props;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://sanjeevchoudhary.com/#person",
+      "name": "Sanjeev Choudhary",
+      "jobTitle": "Senior WordPress, PHP, Shopify & SEO Specialist",
+      "url": "https://sanjeevchoudhary.com",
+      "email": "contact@sanjeevchoudhary.com",
+      "telephone": "+37254587576",
+      "sameAs": [
+        "https://www.upwork.com/freelancers/~01ce3c687db283151d",
+        "https://www.fiverr.com/sanju28",
+        "https://facebook.com/devilsanj"
+      ],
+      "knowsAbout": [
+        "WordPress Development",
+        "Shopify 2.0 Theme Customization",
+        "Search Engine Optimization (SEO)",
+        "On-Page & Off-Page SEO",
+        "Keyword Research & Competitor Gap Analysis",
+        "PHP & REST APIs",
+        "Elementor Pro",
+        "Divi Theme Builder",
+        "Google Core Web Vitals 95+ Optimization"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "Sanjeev Choudhary Web & E-Commerce Engineering",
+      "url": "https://sanjeevchoudhary.com",
+      "email": "contact@sanjeevchoudhary.com",
+      "telephone": "+37254587576",
+      "logo": "https://sanjeevchoudhary.com/assets/img/logo.png",
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 00:00-23:59",
+      "areaServed": "Worldwide"
+    }
+  ]
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
+
+<!-- JSON-LD Schema -->
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

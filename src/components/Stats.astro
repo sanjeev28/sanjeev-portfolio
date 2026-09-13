@@ -1,0 +1,66 @@
+---
+---
+
+<section id="stats-section" class="py-14 border-y border-slate-800/80 bg-slate-950/40 relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="p-4">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-mono tracking-tight mb-2">
+          <span class="stat-counter gradient-text" data-target="12" data-suffix="+">0</span>
+        </div>
+        <span class="text-sm text-slate-400 font-medium">Years Active Mastery</span>
+      </div>
+      <div class="p-4">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-mono tracking-tight mb-2">
+          <span class="stat-counter gradient-text" data-target="650" data-suffix="+">0</span>
+        </div>
+        <span class="text-sm text-slate-400 font-medium">Websites Delivered</span>
+      </div>
+      <div class="p-4">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-mono tracking-tight mb-2">
+          <span class="stat-counter gradient-text" data-target="99" data-suffix="%">0</span>
+        </div>
+        <span class="text-sm text-slate-400 font-medium">Satisfaction Rate</span>
+      </div>
+      <div class="p-4">
+        <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-mono tracking-tight mb-2">
+          <span class="stat-counter gradient-text" data-target="24" data-suffix="/7">0</span>
+        </div>
+        <span class="text-sm text-slate-400 font-medium">Support & Emergency Care</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function initCounters() {
+    const counters = document.querySelectorAll('.stat-counter');
+    if (!counters.length) return;
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseInt(counter.getAttribute('data-target') || '0', 10);
+          const suffix = counter.getAttribute('data-suffix') || '';
+          let count = 0;
+          const speed = Math.max(Math.floor(2000 / target), 10);
+
+          const timer = setInterval(() => {
+            count += Math.ceil(target / 40);
+            if (count >= target) {
+              counter.textContent = target + suffix;
+              clearInterval(timer);
+            } else {
+              counter.textContent = count + suffix;
+            }
+          }, speed);
+
+          obs.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(c => observer.observe(c));
+  })();
+</script>

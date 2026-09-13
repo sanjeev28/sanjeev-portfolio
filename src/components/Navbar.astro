@@ -1,0 +1,93 @@
+---
+const pathname = Astro.url.pathname;
+const isCurrent = (path: string) => {
+  if (path === '/' && pathname === '/') return true;
+  if (path !== '/' && pathname.startsWith(path)) return true;
+  return false;
+};
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <div class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center p-1.5 shadow-lg shadow-indigo-500/10 group-hover:border-indigo-500 transition-colors">
+        <img src="/assets/img/logo.png" alt="Sanjeev Choudhary Logo" class="w-full h-full object-contain site-logo">
+      </div>
+      <div class="flex flex-col">
+        <span class="font-extrabold text-white text-base tracking-tight group-hover:text-indigo-400 transition-colors">
+          Sanjeev Choudhary
+        </span>
+        <span class="text-[10px] text-slate-400 font-mono tracking-wider uppercase">
+          WordPress, PHP, Shopify & SEO Expert
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-7 text-slate-300">
+      <a href="/" class={`text-sm font-medium transition-colors ${isCurrent('/') ? 'text-indigo-400 font-bold border-b-2 border-indigo-500 pb-1' : 'hover:text-indigo-400'}`}>Home</a>
+      <a href="/about" class={`text-sm font-medium transition-colors ${isCurrent('/about') ? 'text-indigo-400 font-bold border-b-2 border-indigo-500 pb-1' : 'hover:text-indigo-400'}`}>About</a>
+      <a href="/services" class={`text-sm font-medium transition-colors ${isCurrent('/services') ? 'text-indigo-400 font-bold border-b-2 border-indigo-500 pb-1' : 'hover:text-indigo-400'}`}>Services</a>
+      <a href="/portfolio" class={`text-sm font-medium transition-colors ${isCurrent('/portfolio') ? 'text-indigo-400 font-bold border-b-2 border-indigo-500 pb-1' : 'hover:text-indigo-400'}`}>Portfolio</a>
+      <a href="/estimator" class={`text-sm font-medium transition-colors ${isCurrent('/estimator') ? 'text-indigo-400 font-bold border-b-2 border-indigo-500 pb-1' : 'hover:text-indigo-400'}`}>Cost Estimator</a>
+      <a href="/contact" class={`text-sm font-medium transition-colors ${isCurrent('/contact') ? 'text-indigo-400 font-bold border-b-2 border-indigo-500 pb-1' : 'hover:text-indigo-400'}`}>Contact</a>
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="hidden md:flex items-center gap-4">
+      <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/60 hover:bg-slate-800/80 text-slate-300 hover:text-white transition-all shadow-sm cursor-pointer" aria-label="Toggle Theme">
+        <i id="theme-icon" class="fa-solid fa-sun text-base"></i>
+      </button>
+
+      <a href="https://wa.me/37254587576" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 hover:bg-emerald-500/20 transition-all">
+        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+      </a>
+
+      <a href="/contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all">
+        Hire Me
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button id="theme-toggle-mobile" class="p-2 rounded-lg border border-slate-800 text-slate-300">
+        <i class="fa-solid fa-sun text-sm"></i>
+      </button>
+      <button id="mobile-menu-btn" class="p-2.5 rounded-xl border border-slate-800 bg-slate-900/80 text-slate-300 hover:text-white" aria-label="Open Menu">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div id="mobile-drawer" class="fixed inset-y-0 right-0 w-72 bg-slate-950 border-l border-slate-800 p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-between shadow-2xl">
+  <div>
+    <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+      <span class="font-bold text-white text-lg">Navigation</span>
+      <button id="mobile-menu-close" class="p-2 rounded-lg text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-4 mt-6 text-slate-300 font-medium">
+      <a href="/" class={`py-1 text-base ${isCurrent('/') ? 'text-indigo-400 font-bold' : 'hover:text-indigo-400'}`}>Home</a>
+      <a href="/about" class={`py-1 text-base ${isCurrent('/about') ? 'text-indigo-400 font-bold' : 'hover:text-indigo-400'}`}>About</a>
+      <a href="/services" class={`py-1 text-base ${isCurrent('/services') ? 'text-indigo-400 font-bold' : 'hover:text-indigo-400'}`}>Services</a>
+      <a href="/portfolio" class={`py-1 text-base ${isCurrent('/portfolio') ? 'text-indigo-400 font-bold' : 'hover:text-indigo-400'}`}>Portfolio</a>
+      <a href="/estimator" class={`py-1 text-base ${isCurrent('/estimator') ? 'text-indigo-400 font-bold' : 'hover:text-indigo-400'}`}>Cost Estimator</a>
+      <a href="/contact" class={`py-1 text-base ${isCurrent('/contact') ? 'text-indigo-400 font-bold' : 'hover:text-indigo-400'}`}>Contact</a>
+    </nav>
+  </div>
+
+  <div class="pt-6 border-t border-slate-800 flex flex-col gap-3">
+    <a href="https://wa.me/37254587576" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-center flex items-center justify-center gap-2 text-sm">
+      <i class="fa-brands fa-whatsapp text-lg"></i> Direct WhatsApp
+    </a>
+    <a href="/contact" class="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-center text-sm">
+      Get In Touch
+    </a>
+  </div>
+</div>

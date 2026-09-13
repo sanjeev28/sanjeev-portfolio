@@ -1,0 +1,245 @@
+---
+import { getProjects } from '../lib/wp.js';
+
+interface Props {
+  limit?: number;
+  showFilters?: boolean;
+}
+
+const { limit, showFilters = true } = Astro.props;
+let allProjects = await getProjects();
+if (limit) {
+  allProjects = allProjects.slice(0, limit);
+}
+---
+
+<section id="projects" class="py-20 relative z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">
+        Selected Works
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Client Showcases & Real Deployments
+      </h2>
+      <p class="text-slate-400 text-sm max-w-2xl mx-auto mt-2">
+        Verified live client websites spanning eCommerce, corporate portals, EdTech platforms, and custom PHP web applications.
+      </p>
+    </div>
+
+    {showFilters && (
+      <div class="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+        <button class="filter-btn active px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-indigo-500 bg-indigo-600/20 text-white transition-all cursor-pointer flex items-center gap-2" data-filter="all">
+          <i class="fa-solid fa-layer-group text-indigo-400"></i> All Projects
+        </button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center gap-2" data-filter="wordpress">
+          <i class="fa-brands fa-wordpress text-blue-400"></i> WordPress
+        </button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center gap-2" data-filter="shopify">
+          <i class="fa-brands fa-shopify text-emerald-400"></i> Shopify
+        </button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center gap-2" data-filter="elementor">
+          <i class="fa-brands fa-elementor text-rose-400"></i> Elementor
+        </button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center gap-2" data-filter="ecommerce">
+          <i class="fa-solid fa-cart-shopping text-amber-400"></i> E-Commerce
+        </button>
+        <button class="filter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-800 bg-slate-900/60 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center gap-2" data-filter="custom">
+          <i class="fa-solid fa-code text-cyan-400"></i> Custom PHP & Web Apps
+        </button>
+      </div>
+    )}
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {allProjects.map((p: any) => (
+        <div 
+          class="project-card glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 flex flex-col group transition-all shadow-lg hover:shadow-indigo-500/5"
+          data-category={p.category}
+          data-title={p.title}
+          data-desc={p.description}
+          data-results={p.results}
+          data-tags={p.tags.join(', ')}
+          data-link={p.link}
+        >
+          <div class={`h-48 bg-gradient-to-tr ${p.gradient || 'from-slate-900 via-indigo-950/60 to-slate-900'} flex items-center justify-center p-6 border-b border-slate-800 relative`}>
+            <!-- Direct Live Site Link Badge -->
+            <a 
+              href={p.link} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="absolute top-4 right-4 px-2.5 py-1 rounded-lg bg-slate-950/70 border border-slate-700/80 text-[11px] font-medium text-slate-300 hover:text-white hover:border-indigo-400 transition-all flex items-center gap-1.5 backdrop-blur-md shadow-sm"
+              title="Visit live site"
+            >
+              <span>Live Site</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-indigo-400"></i>
+            </a>
+
+            <div class="text-center">
+              <div class="w-14 h-14 rounded-2xl bg-slate-950/60 text-white border border-slate-700/80 flex items-center justify-center mx-auto mb-2 text-xl font-bold font-mono shadow-md backdrop-blur-md">
+                {p.icon ? <i class={p.icon}></i> : (p.initials || 'SC')}
+              </div>
+              <h4 class="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">{p.title}</h4>
+              <span class="text-xs text-indigo-400 font-mono">{p.domain}</span>
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold uppercase tracking-wider bg-slate-800/80 text-slate-300 border border-slate-700">
+                  {p.categoryName || 'WordPress'}
+                </span>
+              </div>
+              <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                {p.description}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+              <span class="text-xs font-mono text-emerald-400 truncate max-w-[160px]" title={p.results}>
+                {p.results?.split('•')[0] || '100% Responsive'}
+              </span>
+              <div class="flex items-center gap-2">
+                <button class="view-case-study text-xs text-slate-300 hover:text-white font-semibold flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors cursor-pointer">
+                  Details <i class="fa-solid fa-circle-info text-xs text-indigo-400"></i>
+                </button>
+                <a 
+                  href={p.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 transition-colors"
+                  title="Open live website"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {limit && (
+      <div class="mt-14 text-center">
+        <a href="/portfolio" class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 transition-all hover:scale-[1.03] active:scale-[0.98]">
+          <span>Explore All 11+ Live Client Deployments</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    )}
+
+    <!-- Case Study Modal -->
+    <div id="project-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+      <div class="glass-card max-w-xl w-full rounded-3xl p-8 border border-slate-800 shadow-2xl relative">
+        <button id="modal-close" class="absolute top-6 right-6 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <h3 id="modal-title" class="text-2xl font-extrabold text-white mb-3">Project Title</h3>
+        <div id="modal-tags" class="flex flex-wrap gap-2 mb-4"></div>
+
+        <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed mb-4">
+          Project description goes here...
+        </p>
+
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 mb-6">
+          <span class="text-xs font-mono text-indigo-400 block mb-1">Key Results & Performance Metrics</span>
+          <p id="modal-results" class="text-sm font-semibold text-white">Metrics...</p>
+        </div>
+
+        <div class="flex items-center justify-end gap-3">
+          <button id="modal-cancel" class="px-4 py-2.5 rounded-xl border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition-colors cursor-pointer">
+            Close
+          </button>
+          <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-lg shadow-indigo-600/30">
+            Open Live Project <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+  (function initPortfolio() {
+    // Category Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'border-indigo-500', 'text-white', 'bg-indigo-600/20');
+          b.classList.add('border-slate-800', 'text-slate-300', 'bg-slate-900/60');
+        });
+        btn.classList.add('active', 'border-indigo-500', 'text-white', 'bg-indigo-600/20');
+        btn.classList.remove('border-slate-800', 'text-slate-300', 'bg-slate-900/60');
+
+        const filter = btn.getAttribute('data-filter');
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category') || '';
+          if (filter === 'all' || category.includes(filter)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Case Study Modal Logic
+    const modal = document.getElementById('project-modal');
+    const modalClose = document.getElementById('modal-close');
+    const modalCancel = document.getElementById('modal-cancel');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalResults = document.getElementById('modal-results');
+    const modalTags = document.getElementById('modal-tags');
+    const modalLink = document.getElementById('modal-link');
+
+    if (!modal) return;
+
+    document.querySelectorAll('.view-case-study').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.project-card');
+        if (!card) return;
+
+        modalTitle.textContent = card.getAttribute('data-title') || '';
+        modalDesc.textContent = card.getAttribute('data-desc') || '';
+        modalResults.textContent = card.getAttribute('data-results') || '';
+        modalLink.href = card.getAttribute('data-link') || '#';
+
+        const tags = (card.getAttribute('data-tags') || '').split(',');
+        modalTags.innerHTML = '';
+        tags.forEach(tag => {
+          const trimmed = tag.trim();
+          if (trimmed) {
+            const span = document.createElement('span');
+            span.className = 'px-2.5 py-1 rounded-lg bg-indigo-500/10 text-indigo-400 text-xs font-mono border border-indigo-500/20';
+            span.textContent = trimmed;
+            modalTags.appendChild(span);
+          }
+        });
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    };
+
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalCancel) modalCancel.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  })();
+</script>

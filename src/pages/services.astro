@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import Workflow from '../components/Workflow.astro';
+import Estimator from '../components/Estimator.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+---
+
+<Layout
+  title="Specialized Services — Sanjeev Choudhary | WordPress, Shopify, SEO & Speed Optimization"
+  description="End-to-end web engineering & search marketing across WordPress, Elementor Pro, Shopify 2.0 Liquid, On-Page & Off-Page SEO, Keyword Research, and Core Web Vitals 95+ optimization."
+>
+  <div class="relative pt-28 pb-12 text-center border-b border-slate-800/80 bg-gradient-to-b from-indigo-950/20 to-transparent">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">
+      Specialized Services
+    </div>
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+      High-Impact Web Engineering & SEO Growth
+    </h1>
+    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">
+      Specialized solutions across WordPress, Shopify 2.0, On-Page & Off-Page SEO, and 95+ PageSpeed — engineered to convert and rank.
+    </p>
+  </div>
+
+  <ServicesGrid showAll={true} />
+
+  <!-- 3-PILLAR SEO GROWTH ENGINE SECTION -->
+  <section class="py-20 bg-slate-950/60 border-t border-slate-800/80 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-4">
+          Search Engine Dominance
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Full-Spectrum SEO Growth Engine
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mt-2">
+          A great website that doesn't rank is invisible. I combine modern web code with data-backed SEO so your business dominates Google search results.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Pillar 1: On-Page SEO -->
+        <div class="glass-card rounded-2xl p-8 border border-slate-800 hover:border-emerald-500/40 transition-all flex flex-col justify-between shadow-lg">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-6 shadow-sm">
+              <i class="fa-solid fa-file-code"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">1. On-Page SEO</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Complete on-site structural optimization ensuring search engine bots and visitors understand your value immediately.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300 font-mono">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Title Tags & Meta Descriptions</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> H1-H6 Semantic Content Hierarchy</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Image Alt Tags & WebP Compression</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> Internal Linking Silo Architecture</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> OpenGraph & JSON-LD Rich Schema</li>
+            </ul>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 mt-6">
+            <span class="text-xs text-emerald-400 font-mono font-semibold">Goal: Sub-Second Indexing & High CTR</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Off-Page SEO -->
+        <div class="glass-card rounded-2xl p-8 border border-slate-800 hover:border-indigo-500/40 transition-all flex flex-col justify-between shadow-lg">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl mb-6 shadow-sm">
+              <i class="fa-solid fa-link"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">2. Off-Page SEO</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Strategic domain authority building that signals trust, credibility, and brand power to Google algorithms.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300 font-mono">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> High-DA/DR Contextual Backlinks</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> Competitor Backlink Gap Replication</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> High-Trust Business Citations (NAP)</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> Guest Post Outreach & Brand Signals</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-indigo-400"></i> Toxic Link Audit & Disavow Filing</li>
+            </ul>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 mt-6">
+            <span class="text-xs text-indigo-400 font-mono font-semibold">Goal: Domain Authority & Keyword Rankings</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Keyword Research -->
+        <div class="glass-card rounded-2xl p-8 border border-slate-800 hover:border-cyan-500/40 transition-all flex flex-col justify-between shadow-lg">
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-6 shadow-sm">
+              <i class="fa-solid fa-magnifying-glass-chart"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-3">3. Keyword Research</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Uncovering high-converting, low-competition buyer search queries that drive actual qualified leads and sales.
+            </p>
+            <ul class="space-y-2.5 text-xs text-slate-300 font-mono">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Commercial & Transactional Search Terms</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Long-Tail Keywords with High ROI</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Search Volume & Keyword Difficulty Matrix</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Content Gap & Topic Clustering</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-cyan-400"></i> Monthly Search Console Rank Tracking</li>
+            </ul>
+          </div>
+          <div class="pt-6 border-t border-slate-800/80 mt-6">
+            <span class="text-xs text-cyan-400 font-mono font-semibold">Goal: Continuous Inbound Qualified Leads</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Workflow />
+  <Estimator />
+  <CtaBanner />
+</Layout>

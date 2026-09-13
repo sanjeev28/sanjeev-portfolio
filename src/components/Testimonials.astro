@@ -1,0 +1,95 @@
+---
+import { getTestimonials } from '../lib/wp.js';
+
+const testimonials = await getTestimonials();
+---
+
+<section id="testimonials" class="py-20 bg-slate-950/60 border-t border-slate-800/80 relative z-10">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="testimonials-container" class="relative glass-card rounded-3xl p-8 sm:p-12 border border-slate-800 shadow-2xl overflow-hidden">
+      <span class="quote-mark absolute -top-4 left-6 text-9xl text-indigo-500 pointer-events-none select-none opacity-20">“</span>
+
+      {testimonials.map((t, idx) => (
+        <div class={`testimonial-slide relative z-10 ${idx === 0 ? '' : 'hidden'}`} data-index={idx}>
+          <div class="flex items-center gap-1 text-amber-400 mb-6">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <span class="text-xs text-slate-400 ml-2 font-mono">5.0 / 5.0</span>
+          </div>
+          <p class="text-lg sm:text-xl text-slate-200 leading-relaxed italic mb-8">
+            "{t.quote}"
+          </p>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-500 to-cyan-400 flex items-center justify-center text-white font-bold text-lg">
+                {t.initial}
+              </div>
+              <div>
+                <h4 class="text-base font-bold text-white">{t.clientName}</h4>
+                <span class="text-xs text-indigo-400">{t.role}</span>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold">
+              {t.badge}
+            </span>
+          </div>
+        </div>
+      ))}
+
+      <!-- Carousel Controls -->
+      <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
+        <div id="testimonial-dots" class="flex items-center gap-2"></div>
+        <div class="flex items-center gap-3">
+          <button id="prev-testimonial" class="w-10 h-10 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+          </button>
+          <button id="next-testimonial" class="w-10 h-10 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+            <i class="fa-solid fa-chevron-right text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function initTestimonials() {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dotsContainer = document.getElementById('testimonial-dots');
+    const prevBtn = document.getElementById('prev-testimonial');
+    const nextBtn = document.getElementById('next-testimonial');
+    if (!slides.length) return;
+
+    let current = 0;
+
+    // Create dots
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === 0 ? 'bg-indigo-500 w-6' : 'bg-slate-700'}`;
+      dot.addEventListener('click', () => showSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('hidden', i !== index);
+      });
+      const dots = dotsContainer.children;
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === index ? 'bg-indigo-500 w-6' : 'bg-slate-700'}`;
+      }
+      current = index;
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        showSlide((current + 1) % slides.length);
+      });
+    }
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        showSlide((current - 1 + slides.length) % slides.length);
+      });
+    }
+  })();
+</script>
