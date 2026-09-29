@@ -1,0 +1,45 @@
+# Sanjeev Choudhary — Senior WordPress, PHP, Shopify & SEO Specialist
+
+> Official AI & LLM Search Guide for sanjeevchoudhary.com
+
+## Professional Summary
+Sanjeev Choudhary is an elite Web Engineer and Technical SEO Strategist with 12+ years of professional industry experience, over 650+ websites delivered globally, and a verified track record spanning WordPress/Elementor, Shopify 2.0 Liquid, Custom PHP/MySQL, and Full-Funnel SEO.
+
+- Experience: 12+ Years (including 2 formative years at Nextpage IT Solutions)
+- Projects Delivered: 650+ Global Websites
+- Performance Standard: Guaranteed 95+ Google PageSpeed / Core Web Vitals
+- Location: Available Worldwide 24/7 (UTC+5:30 / IST)
+- Primary Channels:
+  - Official Inquiries: contact@sanjeevchoudhary.com
+  - Direct WhatsApp: +372 5458 7576 (https://wa.me/37254587576)
+  - Upwork Profile: https://www.upwork.com/freelancers/~01ce3c687db283151d
+  - Fiverr Profile: https://www.fiverr.com/sanju28
+
+## Core Services & Capabilities
+1. WordPress & Elementor Pro Engineering (Flexbox containers, ACF Pro, Zero-bloat custom code)
+2. Shopify 2.0 & Custom Liquid Themes (AJAX cart, custom section schemas, conversion rate optimization)
+3. Technical SEO (On-Page, Off-Page, Schema.org JSON-LD, internal linking architecture)
+4. Keyword Research & Competitor Gap Analysis (High-intent transactional keywords, ranking strategy)
+5. Google Core Web Vitals Optimization (Sub-second FCP/LCP, 95+ mobile and desktop scores)
+6. WooCommerce & Custom PHP Web Applications (PHP 8.2, MySQL, REST APIs, payment gateways)
+
+## Selected Verified Portfolio Projects
+- Megamind Technology (megamindtechnology.com) — Global SEO Agency Corporate Portal (WordPress / Elementor)
+- Apex e-Commerce Services (apexecommerceservices.com) — eCommerce Growth Partner Showcase (WordPress)
+- Baniya Super Market (baniyasupermarket.com) — Gourmet D2C Retail Store (Shopify 2.0)
+- Shivya Healthcare (shivyahealthcare.com) — Ayurvedic Wellness Brand (Shopify 2.0)
+- TimTim Foods (timtimfoods.com) — D2C Confectionery & Food Store (Shopify 2.0)
+- Style Gallery Australia (stylegallery.com.au) — Australian Luxury Apparel Boutique (Shopify 2.0)
+- MATLAB Helper ® (matlabhelper.com) — Global EdTech Learning Portal (WordPress / PHP)
+- Online Bank Swift Code (onlinebankswiftcode.com) — Financial Directory with 174k+ branches (PHP/MySQL)
+- SavePin HD (savepinhd.com) — High-Traffic Video Downloader Web App (PHP / JS)
+- Arun Travel (aruntravel.com) — Travel & Tour Booking Platform (WordPress)
+- Best Home Tutor Jammu (besthometutorjammu.com) — Educational Matchmaking Platform (WordPress)
+
+## Website Routes
+- Home: https://sanjeevchoudhary.com/
+- About: https://sanjeevchoudhary.com/about
+- Services: https://sanjeevchoudhary.com/services
+- Portfolio: https://sanjeevchoudhary.com/portfolio
+- Instant Cost Estimator: https://sanjeevchoudhary.com/estimator
+- Contact: https://sanjeevchoudhary.com/contact

@@ -221,9 +221,9 @@ export const fallbackTestimonials = [
 export async function getProjects() {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 sec timeout
+    const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 sec timeout
     
-    const res = await fetch(`${WP_API_URL}/portfolio`, {
+    const res = await fetch(`${WP_API_URL}/projects?per_page=50`, {
       signal: controller.signal,
       headers: { 'Accept': 'application/json' }
     });
@@ -232,21 +232,71 @@ export async function getProjects() {
     if (res.ok) {
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
-        return data.map(item => ({
-          id: item.id,
-          title: item.title?.rendered || item.title,
-          slug: item.slug,
-          category: item.categories?.[0] || 'wordpress',
-          description: item.excerpt?.rendered || item.content?.rendered || '',
-          link: item.acf?.project_url || '#',
-          tags: item.acf?.technologies || ['WordPress', 'PHP']
-        }));
+        return data.map((item, idx) => {
+          // Match with fallback rich styling if exists
+          const fallback = fallbackProjects.find(f => f.title.toLowerCase() === (item.title?.rendered || '').toLowerCase()) || {};
+          return {
+            id: item.id || idx + 1,
+            title: item.title?.rendered || item.title,
+            slug: item.slug,
+            category: fallback.category || 'wordpress',
+            categoryName: fallback.categoryName || 'WordPress Development',
+            domain: fallback.domain || '',
+            link: fallback.link || '#',
+            initials: fallback.initials || item.title?.rendered?.substring(0, 2).toUpperCase() || 'SC',
+            icon: fallback.icon || 'fa-brands fa-wordpress',
+            gradient: fallback.gradient || 'from-slate-900 via-indigo-950/60 to-slate-900',
+            accentColor: fallback.accentColor || 'indigo',
+            description: fallback.description || item.content?.rendered?.replace(/<[^>]+>/g, '') || '',
+            results: fallback.results || 'High Performance • Verified Client Build',
+            tags: fallback.tags || ['WordPress', 'Elementor'],
+            isFeatured: fallback.isFeatured || false
+          };
+        });
       }
     }
   } catch (err) {
     // Graceful fallback during static build or offline server
   }
   return fallbackProjects;
+}
+
+/**
+ * Fetch Estimator Pricing from WordPress API
+ */
+export async function getEstimatorPricing() {
+  const defaultPricing = {
+    pkg_landing_page: 180,
+    pkg_business_wp: 250,
+    pkg_shopify_store: 380,
+    pkg_custom_wp: 450,
+    pkg_fullstack_app: 650,
+    pkg_seo_growth: 280,
+    addon_seo_schema: 60,
+    addon_keyword_research: 90,
+    addon_offpage_seo: 120,
+    addon_ecommerce_cart: 150,
+    addon_speed_optimization: 80,
+    addon_express_delivery: 100,
+    currency_symbol: '$',
+    whatsapp_number: '+372 5458 7576'
+  };
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    const res = await fetch('https://cms.sanjeevchoudhary.com/wp-json/sanjeev/v1/estimator-pricing', {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      return { ...defaultPricing, ...data };
+    }
+  } catch (e) {
+    // Fallback gracefully
+  }
+  return defaultPricing;
 }
 
 /**

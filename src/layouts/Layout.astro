@@ -33,6 +33,22 @@ const { title, description, canonicalURL, ogImage } = Astro.props;
     <!-- SEO Meta & Schema -->
     <SEO title={title} description={description} canonicalURL={canonicalURL} ogImage={ogImage} />
 
+    <!-- Google Search Console & Analytics Support -->
+    {import.meta.env.PUBLIC_GSC_VERIFICATION && (
+      <meta name="google-site-verification" content={import.meta.env.PUBLIC_GSC_VERIFICATION} />
+    )}
+    {import.meta.env.PUBLIC_GA_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
+        <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', gaId);
+        </script>
+      </>
+    )}
+
     <!-- Instant Theme Loader (Zero Flicker) -->
     <script is:inline>
       const savedTheme = localStorage.getItem('sanjeev-theme') || 'dark';
