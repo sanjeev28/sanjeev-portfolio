@@ -2,7 +2,7 @@
  * Headless WordPress REST API Client with Hybrid Fallback
  */
 
-const WP_API_URL = import.meta.env.PUBLIC_WP_URL || 'http://test.local/wp-json/wp/v2';
+const WP_API_URL = import.meta.env.PUBLIC_WP_URL || 'https://cms.sanjeevchoudhary.com/wp-json/wp/v2';
 
 export const fallbackProjects = [
   {
