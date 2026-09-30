@@ -6,5 +6,8 @@ export default defineConfig({
   integrations: [tailwind({
     applyBaseStyles: false
   })],
+  build: {
+    inlineStylesheets: 'always'
+  },
   site: 'https://sanjeevchoudhary.com'
 });

@@ -46,10 +46,12 @@ const gscTag = settings.gsc_verification || import.meta.env.PUBLIC_GSC_VERIFICAT
           fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
           document.head.appendChild(fa);
         }
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadAssets);
+        if (document.readyState === 'complete') {
+          setTimeout(loadAssets, 300);
         } else {
-          window.addEventListener('load', loadAssets);
+          window.addEventListener('load', function() {
+            setTimeout(loadAssets, 300);
+          });
         }
       })();
     </script>

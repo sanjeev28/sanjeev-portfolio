@@ -106,6 +106,7 @@ const settings = await getPortfolioSettings();
   function initParticles() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
+    if (window.innerWidth < 768) return; // Zero mobile CPU load for 95+ PageSpeed
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
