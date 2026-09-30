@@ -117,7 +117,7 @@ const settings = await getPortfolioSettings();
     }, { passive: true });
 
     const particles = [];
-    const count = Math.min(Math.floor(window.innerWidth / 28), 45);
+    const count = Math.min(Math.floor(window.innerWidth / 40), 25);
 
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -176,11 +176,13 @@ const settings = await getPortfolioSettings();
   }
 
   if (typeof window !== 'undefined') {
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(initParticles);
-    } else {
-      window.addEventListener('load', initParticles);
-    }
+    window.addEventListener('load', () => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(initParticles, { timeout: 2000 });
+      } else {
+        setTimeout(initParticles, 800);
+      }
+    });
   }
 
   // Typing Effect

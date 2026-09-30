@@ -33,6 +33,14 @@
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  /* Reserved Icon Dimensions to completely eliminate CLS */
+  i[class*="fa-"], [class^="fa-"] {
+    display: inline-block;
+    width: 1.2em;
+    text-align: center;
+    box-sizing: content-box;
+  }
 }
 
 /* Glassmorphism Cards */

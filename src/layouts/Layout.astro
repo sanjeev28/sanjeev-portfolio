@@ -32,29 +32,13 @@ const gscTag = settings.gsc_verification || import.meta.env.PUBLIC_GSC_VERIFICAT
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <!-- Asynchronous Non-blocking Fonts & Icons (0ms Render Blocking) -->
-    <script is:inline>
-      (function() {
-        function loadAssets() {
-          var gf = document.createElement('link');
-          gf.rel = 'stylesheet';
-          gf.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap';
-          document.head.appendChild(gf);
+    <!-- High-Performance Asynchronous Non-blocking Fonts & Icons (Zero CLS on PC, Zero Blocking on Mobile) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'">
 
-          var fa = document.createElement('link');
-          fa.rel = 'stylesheet';
-          fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
-          document.head.appendChild(fa);
-        }
-        if (document.readyState === 'complete') {
-          setTimeout(loadAssets, 300);
-        } else {
-          window.addEventListener('load', function() {
-            setTimeout(loadAssets, 300);
-          });
-        }
-      })();
-    </script>
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
