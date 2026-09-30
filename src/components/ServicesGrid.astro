@@ -1,85 +1,12 @@
 ---
+import { getServices } from '../lib/wp.js';
+
 interface Props {
   showAll?: boolean;
 }
 
 const { showAll = true } = Astro.props;
-
-const services = [
-  {
-    title: 'WordPress & Elementor Pro',
-    desc: 'Pixel-perfect Elementor Pro & Divi theme development using modern Flexbox Containers, ACF Pro, and clean semantic architecture.',
-    tag: 'Theme & Plugin Dev • ACF Pro',
-    icon: 'fa-brands fa-wordpress',
-    iconColor: 'text-indigo-400',
-    hoverBorder: 'hover:border-indigo-500/50',
-    bgBadge: 'bg-indigo-500/10'
-  },
-  {
-    title: 'Shopify 2.0 & Liquid Themes',
-    desc: 'Custom Shopify 2.0 storefronts, bespoke Liquid coding, AJAX cart drawers, high-converting product pages, and app integrations.',
-    tag: 'Liquid Code • App Integration',
-    icon: 'fa-brands fa-shopify',
-    iconColor: 'text-emerald-400',
-    hoverBorder: 'hover:border-emerald-500/50',
-    bgBadge: 'bg-emerald-500/10'
-  },
-  {
-    title: 'On-Page & Off-Page SEO',
-    desc: 'Full-spectrum search engine optimization: semantic HTML, meta tag architecture, internal linking silos, and high-authority contextual backlink acquisition.',
-    tag: 'On-Page • Off-Page • Link Building',
-    icon: 'fa-solid fa-magnifying-glass-chart',
-    iconColor: 'text-cyan-400',
-    hoverBorder: 'hover:border-cyan-500/50',
-    bgBadge: 'bg-cyan-500/10'
-  },
-  {
-    title: 'Keyword Research & Rank Strategy',
-    desc: 'In-depth competitor keyword gap analysis, high-converting buyer-intent search terms, search volume forecasting, and Google Search Console audits.',
-    tag: 'Search Volume • Intent Mapping • Rank Tracking',
-    icon: 'fa-solid fa-chart-line',
-    iconColor: 'text-teal-400',
-    hoverBorder: 'hover:border-teal-500/50',
-    bgBadge: 'bg-teal-500/10'
-  },
-  {
-    title: 'Speed & Core Web Vitals 95+',
-    desc: 'Guaranteeing 90-98+ Google PageSpeed on Elementor and Shopify. Sub-second caching, asset deferral, WebP compression & image tuning.',
-    tag: 'WP Rocket • LiteSpeed • Cloudflare',
-    icon: 'fa-solid fa-bolt',
-    iconColor: 'text-amber-400',
-    hoverBorder: 'hover:border-amber-500/50',
-    bgBadge: 'bg-amber-500/10'
-  },
-  {
-    title: 'WooCommerce Architecture',
-    desc: 'Custom single-page checkouts, Stripe / Razorpay gateways, automated invoice workflows, and conversion rate optimization.',
-    tag: 'Checkout Funnels • Payment APIs',
-    icon: 'fa-solid fa-cart-shopping',
-    iconColor: 'text-rose-400',
-    hoverBorder: 'hover:border-rose-500/50',
-    bgBadge: 'bg-rose-500/10'
-  },
-  {
-    title: 'Custom PHP & REST APIs',
-    desc: 'Bespoke plugin development, third-party CRM and webhook integrations, MySQL database queries, and custom post type architectures.',
-    tag: 'PHP 8.2 • REST APIs • Webhooks',
-    icon: 'fa-brands fa-php',
-    iconColor: 'text-purple-400',
-    hoverBorder: 'hover:border-purple-500/50',
-    bgBadge: 'bg-purple-500/10'
-  },
-  {
-    title: '24/7 Security & Support',
-    desc: 'Emergency malware removal, automated cloud backups, SSL hardening, and continuous monitoring to keep sites safe.',
-    tag: 'Malware Cleanup • Cloud Backups',
-    icon: 'fa-solid fa-shield-halved',
-    iconColor: 'text-blue-400',
-    hoverBorder: 'hover:border-blue-500/50',
-    bgBadge: 'bg-blue-500/10'
-  }
-];
-
+const services = await getServices();
 const displayedServices = showAll ? services : services.slice(0, 6);
 ---
 

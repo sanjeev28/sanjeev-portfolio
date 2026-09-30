@@ -215,15 +215,89 @@ export const fallbackTestimonials = [
   }
 ];
 
+export const fallbackServices = [
+  {
+    title: 'WordPress & Elementor Pro',
+    desc: 'Pixel-perfect Elementor Pro & Divi theme development using modern Flexbox Containers, ACF Pro, and clean semantic architecture.',
+    tag: 'Theme & Plugin Dev • ACF Pro',
+    icon: 'fa-brands fa-wordpress',
+    iconColor: 'text-indigo-400',
+    hoverBorder: 'hover:border-indigo-500/50',
+    bgBadge: 'bg-indigo-500/10'
+  },
+  {
+    title: 'Shopify 2.0 & Liquid Themes',
+    desc: 'Custom Shopify 2.0 storefronts, bespoke Liquid coding, AJAX cart drawers, high-converting product pages, and app integrations.',
+    tag: 'Liquid Code • App Integration',
+    icon: 'fa-brands fa-shopify',
+    iconColor: 'text-emerald-400',
+    hoverBorder: 'hover:border-emerald-500/50',
+    bgBadge: 'bg-emerald-500/10'
+  },
+  {
+    title: 'On-Page & Off-Page SEO',
+    desc: 'Full-spectrum search engine optimization: semantic HTML, meta tag architecture, internal linking silos, and high-authority contextual backlink acquisition.',
+    tag: 'On-Page • Off-Page • Link Building',
+    icon: 'fa-solid fa-magnifying-glass-chart',
+    iconColor: 'text-cyan-400',
+    hoverBorder: 'hover:border-cyan-500/50',
+    bgBadge: 'bg-cyan-500/10'
+  },
+  {
+    title: 'Keyword Research & Rank Strategy',
+    desc: 'In-depth competitor keyword gap analysis, high-converting buyer-intent search terms, search volume forecasting, and Google Search Console audits.',
+    tag: 'Search Volume • Intent Mapping • Rank Tracking',
+    icon: 'fa-solid fa-chart-line',
+    iconColor: 'text-teal-400',
+    hoverBorder: 'hover:border-teal-500/50',
+    bgBadge: 'bg-teal-500/10'
+  },
+  {
+    title: 'Speed & Core Web Vitals 95+',
+    desc: 'Guaranteeing 90-98+ Google PageSpeed on Elementor and Shopify. Sub-second caching, asset deferral, WebP compression & image tuning.',
+    tag: 'WP Rocket • LiteSpeed • Cloudflare',
+    icon: 'fa-solid fa-bolt',
+    iconColor: 'text-amber-400',
+    hoverBorder: 'hover:border-amber-500/50',
+    bgBadge: 'bg-amber-500/10'
+  },
+  {
+    title: 'WooCommerce Architecture',
+    desc: 'Custom single-page checkouts, Stripe / Razorpay gateways, automated invoice workflows, and conversion rate optimization.',
+    tag: 'Checkout Funnels • Payment APIs',
+    icon: 'fa-solid fa-cart-shopping',
+    iconColor: 'text-rose-400',
+    hoverBorder: 'hover:border-rose-500/50',
+    bgBadge: 'bg-rose-500/10'
+  },
+  {
+    title: 'Custom PHP & REST APIs',
+    desc: 'Bespoke plugin development, third-party CRM and webhook integrations, MySQL database queries, and custom post type architectures.',
+    tag: 'PHP 8.2 • REST APIs • Webhooks',
+    icon: 'fa-brands fa-php',
+    iconColor: 'text-purple-400',
+    hoverBorder: 'hover:border-purple-500/50',
+    bgBadge: 'bg-purple-500/10'
+  },
+  {
+    title: '24/7 Security & Support',
+    desc: 'Emergency malware removal, automated cloud backups, SSL hardening, and continuous monitoring to keep sites safe.',
+    tag: 'Malware Cleanup • Cloud Backups',
+    icon: 'fa-solid fa-shield-halved',
+    iconColor: 'text-blue-400',
+    hoverBorder: 'hover:border-blue-500/50',
+    bgBadge: 'bg-blue-500/10'
+  }
+];
+
 /**
  * Fetch projects from WordPress CPT or fallback
  */
 export async function getProjects() {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 sec timeout
-    
-    const res = await fetch(`${WP_API_URL}/projects?per_page=50`, {
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+    const res = await fetch('https://cms.sanjeevchoudhary.com/wp-json/sanjeev/v1/projects', {
       signal: controller.signal,
       headers: { 'Accept': 'application/json' }
     });
@@ -233,24 +307,23 @@ export async function getProjects() {
       const data = await res.json();
       if (Array.isArray(data) && data.length > 0) {
         return data.map((item, idx) => {
-          // Match with fallback rich styling if exists
-          const fallback = fallbackProjects.find(f => f.title.toLowerCase() === (item.title?.rendered || '').toLowerCase()) || {};
+          const fallback = fallbackProjects.find(f => f.slug === item.slug || f.title.toLowerCase() === item.title.toLowerCase()) || {};
           return {
             id: item.id || idx + 1,
-            title: item.title?.rendered || item.title,
+            title: item.title,
             slug: item.slug,
-            category: fallback.category || 'wordpress',
-            categoryName: fallback.categoryName || 'WordPress Development',
-            domain: fallback.domain || '',
-            link: fallback.link || '#',
-            initials: fallback.initials || item.title?.rendered?.substring(0, 2).toUpperCase() || 'SC',
+            category: (item.categories && item.categories.length > 0) ? item.categories.join(' ') : (fallback.category || 'wordpress'),
+            categoryName: item.category_name || fallback.categoryName || 'WordPress',
+            domain: item.domain || fallback.domain || '',
+            link: item.url || fallback.link || '#',
+            initials: fallback.initials || item.title.substring(0, 2).toUpperCase() || 'SC',
             icon: fallback.icon || 'fa-brands fa-wordpress',
             gradient: fallback.gradient || 'from-slate-900 via-indigo-950/60 to-slate-900',
             accentColor: fallback.accentColor || 'indigo',
-            description: fallback.description || item.content?.rendered?.replace(/<[^>]+>/g, '') || '',
-            results: fallback.results || 'High Performance • Verified Client Build',
-            tags: fallback.tags || ['WordPress', 'Elementor'],
-            isFeatured: fallback.isFeatured || false
+            description: item.description || fallback.description || '',
+            results: item.results || fallback.results || '',
+            tags: (item.tags && item.tags.length > 0) ? item.tags : (fallback.tags || ['WordPress']),
+            isFeatured: item.featured !== undefined ? item.featured : (fallback.isFeatured || false)
           };
         });
       }
@@ -259,6 +332,73 @@ export async function getProjects() {
     // Graceful fallback during static build or offline server
   }
   return fallbackProjects;
+}
+
+/**
+ * Fetch services from WordPress CPT or fallback
+ */
+export async function getServices() {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+    const res = await fetch('https://cms.sanjeevchoudhary.com/wp-json/sanjeev/v1/services', {
+      signal: controller.signal,
+      headers: { 'Accept': 'application/json' }
+    });
+    clearTimeout(timeoutId);
+
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return data.map((s, idx) => {
+          const fallback = fallbackServices[idx] || {};
+          return {
+            title: s.title,
+            desc: s.description || fallback.desc || '',
+            tag: s.badge || fallback.tag || '',
+            icon: s.icon || fallback.icon || 'fa-solid fa-code',
+            iconColor: fallback.iconColor || 'text-indigo-400',
+            hoverBorder: fallback.hoverBorder || 'hover:border-indigo-500/50',
+            bgBadge: fallback.bgBadge || 'bg-indigo-500/10'
+          };
+        });
+      }
+    }
+  } catch (err) {}
+  return fallbackServices;
+}
+
+/**
+ * Fetch Global Portfolio Settings, GA4 & SEO
+ */
+export async function getPortfolioSettings() {
+  const defaultSettings = {
+    ga4_id: '',
+    gsc_verification: '',
+    seo_meta_title: 'Sanjeev Choudhary | Senior WordPress, Elementor & Shopify Architect',
+    seo_meta_desc: 'Senior WordPress, Elementor & Shopify Architect specializing in sub-second headless architectures, custom plugins, and full-stack solutions.',
+    hero_badge: 'Available for Q4 Projects / Full-Stack & Headless Architect',
+    contact_email: 'contact@sanjeevchoudhary.com',
+    contact_phone: '+372 5458 7576',
+    contact_whatsapp: '+372 5458 7576',
+    social_github: 'https://github.com/sanjeev28',
+    social_linkedin: 'https://linkedin.com/in/sanjeev-choudhary',
+    social_upwork: 'https://upwork.com/',
+    social_fiverr: 'https://fiverr.com/',
+    header_scripts: '',
+    footer_scripts: '',
+  };
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    const res = await fetch('https://cms.sanjeevchoudhary.com/wp-json/sanjeev/v1/settings', { signal: controller.signal });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      return { ...defaultSettings, ...data };
+    }
+  } catch (e) {}
+  return defaultSettings;
 }
 
 /**
@@ -300,8 +440,20 @@ export async function getEstimatorPricing() {
 }
 
 /**
- * Fetch testimonials
+ * Fetch testimonials from WordPress CPT or fallback
  */
 export async function getTestimonials() {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2000);
+    const res = await fetch('https://cms.sanjeevchoudhary.com/wp-json/sanjeev/v1/testimonials', { signal: controller.signal });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return data;
+      }
+    }
+  } catch (e) {}
   return fallbackTestimonials;
 }
