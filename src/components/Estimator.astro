@@ -1,4 +1,7 @@
 ---
+import { getEstimatorPricing } from '../lib/wp.js';
+
+const pricing = await getEstimatorPricing();
 ---
 
 <section id="estimator" class="py-20 relative z-10">
@@ -20,14 +23,14 @@
         <div>
           <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Select Platform & Project Type</label>
           <select id="calc-type" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors">
-            <option value="shopify">Shopify 2.0 Store Setup & Custom Liquid Theme ($380)</option>
-            <option value="elementor" selected>Elementor Pro Custom Design & Responsive Build ($220)</option>
-            <option value="divi">Divi Custom Layout & Module Setup ($240)</option>
-            <option value="landing">High-Conversion Landing Page ($120)</option>
-            <option value="custom_wp">Complete Custom WordPress Theme & CMS ($450)</option>
-            <option value="ecommerce">Full WooCommerce E-Commerce Store ($550)</option>
-            <option value="seo_campaign">Complete SEO Growth Package (On-Page, Off-Page & Keywords) ($280)</option>
-            <option value="speed">Speed & Core Web Vitals 95+ Tuning ($150)</option>
+            <option value="shopify" data-name="Shopify 2.0 Store Setup & Custom Liquid Theme">Shopify 2.0 Store Setup & Custom Liquid Theme (${pricing.pkg_shopify_liquid})</option>
+            <option value="elementor" data-name="Elementor Pro Custom Design & Responsive Build" selected>Elementor Pro Custom Design & Responsive Build (${pricing.pkg_elementor_pro})</option>
+            <option value="divi" data-name="Divi Custom Layout & Module Setup">Divi Custom Layout & Module Setup (${pricing.pkg_divi_setup})</option>
+            <option value="landing" data-name="High-Conversion Landing Page">High-Conversion Landing Page (${pricing.pkg_landing_page})</option>
+            <option value="custom_wp" data-name="Complete Custom WordPress Theme & CMS">Complete Custom WordPress Theme & CMS (${pricing.pkg_custom_wp})</option>
+            <option value="ecommerce" data-name="Full WooCommerce E-Commerce Store">Full WooCommerce E-Commerce Store (${pricing.pkg_ecommerce_store})</option>
+            <option value="seo_campaign" data-name="Complete SEO Growth Package (On-Page, Off-Page & Keywords)">Complete SEO Growth Package (On-Page, Off-Page & Keywords) (${pricing.pkg_seo_growth})</option>
+            <option value="speed" data-name="Speed & Core Web Vitals 95+ Tuning">Speed & Core Web Vitals 95+ Tuning (${pricing.pkg_speed_tuning})</option>
           </select>
         </div>
 
@@ -43,25 +46,25 @@
           <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-slate-700 transition-colors">
             <input type="checkbox" id="calc-speed" checked class="w-4 h-4 rounded text-indigo-600 bg-slate-800 border-slate-700">
             <span class="text-xs sm:text-sm text-slate-300 flex-1">95+ PageSpeed & Core Web Vitals Optimization</span>
-            <span class="text-xs font-mono text-emerald-400">+$80</span>
+            <span id="label-addon-speed" class="text-xs font-mono text-emerald-400">+${pricing.addon_speed_95}</span>
           </label>
 
           <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-slate-700 transition-colors">
             <input type="checkbox" id="calc-seo" checked class="w-4 h-4 rounded text-indigo-600 bg-slate-800 border-slate-700">
             <span class="text-xs sm:text-sm text-slate-300 flex-1">On-Page Technical SEO & Schema Markup</span>
-            <span class="text-xs font-mono text-emerald-400">+$60</span>
+            <span id="label-addon-seo" class="text-xs font-mono text-emerald-400">+${pricing.addon_onpage_seo}</span>
           </label>
 
           <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-slate-700 transition-colors">
             <input type="checkbox" id="calc-keyword" class="w-4 h-4 rounded text-indigo-600 bg-slate-800 border-slate-700">
             <span class="text-xs sm:text-sm text-slate-300 flex-1">In-Depth Keyword Research & Competitor Gap Analysis</span>
-            <span class="text-xs font-mono text-emerald-400">+$90</span>
+            <span id="label-addon-keyword" class="text-xs font-mono text-emerald-400">+${pricing.addon_keyword_research}</span>
           </label>
 
           <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer hover:border-slate-700 transition-colors">
             <input type="checkbox" id="calc-offpage" class="w-4 h-4 rounded text-indigo-600 bg-slate-800 border-slate-700">
             <span class="text-xs sm:text-sm text-slate-300 flex-1">Off-Page SEO Backlink Outreach & Authority Citations</span>
-            <span class="text-xs font-mono text-emerald-400">+$120</span>
+            <span id="label-addon-offpage" class="text-xs font-mono text-emerald-400">+${pricing.addon_offpage_seo}</span>
           </label>
         </div>
       </div>
@@ -82,7 +85,7 @@
           </div>
         </div>
 
-        <a id="calc-whatsapp-btn" href="https://wa.me/37254587576" target="_blank" rel="noopener" class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all">
+        <a id="calc-whatsapp-btn" href={`https://wa.me/${(pricing.whatsapp_number || '+37254587576').replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener" class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all">
           <i class="fa-brands fa-whatsapp text-lg"></i> Lock In This Quote
         </a>
       </div>
@@ -90,8 +93,10 @@
   </div>
 </section>
 
-<script is:inline>
+<script is:inline define:vars={{ initialPricing: pricing }}>
   (function initEstimator() {
+    let p = initialPricing || {};
+
     const typeSelect = document.getElementById('calc-type');
     const pagesRange = document.getElementById('calc-pages');
     const pagesVal = document.getElementById('calc-pages-val');
@@ -105,35 +110,54 @@
 
     if (!typeSelect || !pagesRange) return;
 
-    const basePrices = {
-      shopify: 380,
-      elementor: 220,
-      divi: 240,
-      landing: 120,
-      custom_wp: 450,
-      ecommerce: 550,
-      seo_campaign: 280,
-      speed: 150
-    };
+    function getBasePrice(type) {
+      if (type === 'shopify') return Number(p.pkg_shopify_liquid) || 380;
+      if (type === 'elementor') return Number(p.pkg_elementor_pro) || 220;
+      if (type === 'divi') return Number(p.pkg_divi_setup) || 240;
+      if (type === 'landing') return Number(p.pkg_landing_page) || 120;
+      if (type === 'custom_wp') return Number(p.pkg_custom_wp) || 450;
+      if (type === 'ecommerce') return Number(p.pkg_ecommerce_store) || 550;
+      if (type === 'seo_campaign') return Number(p.pkg_seo_growth) || 280;
+      if (type === 'speed') return Number(p.pkg_speed_tuning) || 150;
+      return 220;
+    }
+
+    function updateOptionLabels() {
+      for (let i = 0; i < typeSelect.options.length; i++) {
+        const opt = typeSelect.options[i];
+        const baseName = opt.getAttribute('data-name') || opt.text.split('(')[0].trim();
+        const price = getBasePrice(opt.value);
+        opt.text = `${baseName} ($${price})`;
+      }
+      const speedLbl = document.getElementById('label-addon-speed');
+      if (speedLbl) speedLbl.textContent = `+$${p.addon_speed_95 || 80}`;
+      const seoLbl = document.getElementById('label-addon-seo');
+      if (seoLbl) seoLbl.textContent = `+$${p.addon_onpage_seo || 60}`;
+      const keyLbl = document.getElementById('label-addon-keyword');
+      if (keyLbl) keyLbl.textContent = `+$${p.addon_keyword_research || 90}`;
+      const offLbl = document.getElementById('label-addon-offpage');
+      if (offLbl) offLbl.textContent = `+$${p.addon_offpage_seo || 120}`;
+    }
 
     function recalculate() {
       const type = typeSelect.value;
       const pages = parseInt(pagesRange.value, 10);
-      pagesVal.textContent = pages;
+      if (pagesVal) pagesVal.textContent = pages;
 
-      let base = basePrices[type] || 220;
-      let pageAdd = Math.max(0, pages - 1) * 35;
+      let base = getBasePrice(type);
+      let pageRate = Number(p.page_rate) || 35;
+      let pageAdd = Math.max(0, pages - 1) * pageRate;
       let total = base + pageAdd;
 
-      if (speedCheck && speedCheck.checked) total += 80;
-      if (seoCheck && seoCheck.checked) total += 60;
-      if (keywordCheck && keywordCheck.checked) total += 90;
-      if (offpageCheck && offpageCheck.checked) total += 120;
+      if (speedCheck && speedCheck.checked) total += (Number(p.addon_speed_95) || 80);
+      if (seoCheck && seoCheck.checked) total += (Number(p.addon_onpage_seo) || 60);
+      if (keywordCheck && keywordCheck.checked) total += (Number(p.addon_keyword_research) || 90);
+      if (offpageCheck && offpageCheck.checked) total += (Number(p.addon_offpage_seo) || 120);
 
       let days = Math.min(25, 4 + Math.floor(pages * 0.8) + (total > 450 ? 3 : 0));
 
-      costDisplay.textContent = '$' + total;
-      daysDisplay.textContent = days + ' Days';
+      if (costDisplay) costDisplay.textContent = '$' + total;
+      if (daysDisplay) daysDisplay.textContent = days + ' Days';
 
       const typeLabel = typeSelect.options[typeSelect.selectedIndex].text.split('(')[0].trim();
       let addons = [];
@@ -142,6 +166,7 @@
       if (keywordCheck && keywordCheck.checked) addons.push('Keyword Research');
       if (offpageCheck && offpageCheck.checked) addons.push('Off-Page SEO');
 
+      const rawNumber = (p.whatsapp_number || '+37254587576').replace(/[^0-9]/g, '');
       const msg = encodeURIComponent(`Hi Sanjeev! I used your website Cost Estimator.
 Project: ${typeLabel}
 Pages: ${pages}
@@ -151,7 +176,7 @@ Timeline: ${days} Days.
 Let's discuss!`);
 
       if (whatsappBtn) {
-        whatsappBtn.href = `https://wa.me/37254587576?text=${msg}`;
+        whatsappBtn.href = `https://wa.me/${rawNumber}?text=${msg}`;
       }
     }
 
@@ -163,5 +188,17 @@ Let's discuss!`);
     if (offpageCheck) offpageCheck.addEventListener('change', recalculate);
 
     recalculate();
+
+    // Live Client-Side Sync: Fetch from WordPress REST API to ensure 100% fresh prices
+    fetch('https://cms.sanjeevchoudhary.com/wp-json/sanjeev/v1/estimator-pricing')
+      .then(res => res.json())
+      .then(livePricing => {
+        if (livePricing && livePricing.pkg_shopify_liquid) {
+          p = livePricing;
+          updateOptionLabels();
+          recalculate();
+        }
+      })
+      .catch(() => {});
   })();
 </script>

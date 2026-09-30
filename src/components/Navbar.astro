@@ -1,10 +1,15 @@
 ---
+import { getPortfolioSettings } from '../lib/wp.js';
+
 const pathname = Astro.url.pathname;
 const isCurrent = (path: string) => {
   if (path === '/' && pathname === '/') return true;
   if (path !== '/' && pathname.startsWith(path)) return true;
   return false;
 };
+
+const settings = await getPortfolioSettings();
+const whatsappDigits = (settings.contact_whatsapp || '37254587576').replace(/[^0-9]/g, '');
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80 transition-all duration-300">
@@ -41,12 +46,12 @@ const isCurrent = (path: string) => {
         <i id="theme-icon" class="fa-solid fa-sun text-base"></i>
       </button>
 
-      <a href="https://wa.me/37254587576" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 hover:bg-emerald-500/20 transition-all">
+      <a href={`https://wa.me/${whatsappDigits}`} target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 hover:bg-emerald-500/20 transition-all">
         <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
       </a>
 
-      <a href="/contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all">
-        Hire Me
+      <a href={settings.navbar_hire_btn_link || '/contact'} class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all">
+        {settings.navbar_hire_btn_text || 'Hire Me'}
       </a>
     </div>
 

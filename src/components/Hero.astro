@@ -1,4 +1,7 @@
 ---
+import { getPortfolioSettings } from '../lib/wp.js';
+
+const settings = await getPortfolioSettings();
 ---
 
 <section id="hero" class="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
@@ -11,7 +14,7 @@
       <div class="lg:col-span-7 text-center lg:text-left">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          Available Day & Night • WordPress, PHP, Shopify & SEO Expert
+          {settings.hero_badge || 'Available for Q4 Projects / Full-Stack & Headless Architect'}
         </div>
 
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-6">
@@ -31,11 +34,11 @@
         </p>
 
         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
-          <a href="/portfolio" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500 text-white font-semibold text-base shadow-xl shadow-indigo-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all">
-            Explore Portfolio
+          <a href={settings.hero_primary_btn_link || '/portfolio'} class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-indigo-500 via-indigo-600 to-cyan-500 text-white font-semibold text-base shadow-xl shadow-indigo-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all">
+            {settings.hero_primary_btn_text || 'Explore Portfolio'}
           </a>
-          <a href="/estimator" class="px-7 py-3.5 rounded-xl border border-slate-700 hover:border-indigo-500 bg-slate-900/60 text-white font-medium text-base transition-all">
-            Instant Cost Calculator
+          <a href={settings.hero_secondary_btn_link || '/estimator'} class="px-7 py-3.5 rounded-xl border border-slate-700 hover:border-indigo-500 bg-slate-900/60 text-white font-medium text-base transition-all">
+            {settings.hero_secondary_btn_text || 'Instant Cost Calculator'}
           </a>
         </div>
 
