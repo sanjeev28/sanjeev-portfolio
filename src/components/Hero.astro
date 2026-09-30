@@ -18,9 +18,19 @@ const settings = await getPortfolioSettings();
         </div>
 
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-6">
-          Designing High-Impact <br class="hidden sm:inline">
-          <span class="gradient-text">Web & E-Commerce</span> <br class="hidden sm:inline">
-          Experiences.
+          {settings.hero_headline ? (
+            settings.hero_headline.includes('<') ? (
+              <Fragment set:html={settings.hero_headline} />
+            ) : (
+              <span class="gradient-text">{settings.hero_headline}</span>
+            )
+          ) : (
+            <>
+              Designing High-Impact <br class="hidden sm:inline" />
+              <span class="gradient-text">Web & E-Commerce</span> <br class="hidden sm:inline" />
+              Experiences.
+            </>
+          )}
         </h1>
 
         <div class="text-lg sm:text-xl md:text-2xl text-slate-300 font-medium min-h-[2.5rem] mb-6 flex flex-wrap items-baseline justify-center lg:justify-start">
