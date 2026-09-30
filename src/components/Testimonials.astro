@@ -66,6 +66,7 @@ const testimonials = await getTestimonials();
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = `w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${i === 0 ? 'bg-indigo-500 w-6' : 'bg-slate-700'}`;
+      dot.setAttribute('aria-label', `Go to testimonial slide ${i + 1}`);
       dot.addEventListener('click', () => showSlide(i));
       dotsContainer.appendChild(dot);
     });

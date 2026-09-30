@@ -37,9 +37,9 @@ Sanjeev Choudhary is an elite Web Engineer and Technical SEO Strategist with 12+
 - Best Home Tutor Jammu (besthometutorjammu.com) — Educational Matchmaking Platform (WordPress)
 
 ## Website Routes
-- Home: https://sanjeevchoudhary.com/
-- About: https://sanjeevchoudhary.com/about
-- Services: https://sanjeevchoudhary.com/services
-- Portfolio: https://sanjeevchoudhary.com/portfolio
-- Instant Cost Estimator: https://sanjeevchoudhary.com/estimator
-- Contact: https://sanjeevchoudhary.com/contact
+- [Home](https://sanjeevchoudhary.com/)
+- [About Me](https://sanjeevchoudhary.com/about)
+- [Specialized Services](https://sanjeevchoudhary.com/services)
+- [Client Portfolio](https://sanjeevchoudhary.com/portfolio)
+- [Instant Cost Estimator](https://sanjeevchoudhary.com/estimator)
+- [Contact & Inquiry](https://sanjeevchoudhary.com/contact)

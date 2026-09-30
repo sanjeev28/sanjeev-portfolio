@@ -76,16 +76,16 @@ const pricing = await getEstimatorPricing();
 
         <div class="grid grid-cols-2 gap-3 mb-6 text-left">
           <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-            <span class="text-[10px] font-mono text-slate-500 block uppercase">Est. Delivery</span>
+            <span class="text-[10px] font-mono text-slate-400 block uppercase">Est. Delivery</span>
             <span id="calc-days" class="text-sm font-bold text-white font-mono">7 Days</span>
           </div>
           <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-            <span class="text-[10px] font-mono text-slate-500 block uppercase">Support</span>
+            <span class="text-[10px] font-mono text-slate-400 block uppercase">Support</span>
             <span class="text-sm font-bold text-emerald-400 font-mono">30 Days Free</span>
           </div>
         </div>
 
-        <a id="calc-whatsapp-btn" href={`https://wa.me/${(pricing.whatsapp_number || '+37254587576').replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener" class="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all">
+        <a id="calc-whatsapp-btn" href={`https://wa.me/${(pricing.whatsapp_number || '+37254587576').replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener" class="w-full py-3.5 px-6 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition-all" aria-label="Lock in this quote on WhatsApp">
           <i class="fa-brands fa-whatsapp text-lg"></i> Lock In This Quote
         </a>
       </div>
