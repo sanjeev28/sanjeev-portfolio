@@ -18,24 +18,14 @@ const settings = await getPortfolioSettings();
         </div>
 
         <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-6">
-          {settings.hero_headline ? (
-            settings.hero_headline.includes('<') ? (
-              <Fragment set:html={settings.hero_headline} />
-            ) : (
-              <span class="gradient-text">{settings.hero_headline}</span>
-            )
-          ) : (
-            <>
-              Designing High-Impact <br class="hidden sm:inline" />
-              <span class="gradient-text">Web & E-Commerce</span> <br class="hidden sm:inline" />
-              Experiences.
-            </>
-          )}
+          Designing High-Impact <br class="hidden sm:inline">
+          <span class="gradient-text">Web & E-Commerce</span> <br class="hidden sm:inline">
+          Experiences.
         </h1>
 
         <div class="text-lg sm:text-xl md:text-2xl text-slate-300 font-medium min-h-[2.5rem] mb-6 flex flex-wrap items-baseline justify-center lg:justify-start">
           <span>Specialized as a&nbsp;</span>
-          <span id="typing-text" class="text-cyan-400 font-semibold"></span>
+          <span id="typing-text" class="text-cyan-400 font-semibold">WordPress & Elementor Expert</span>
           <span class="typing-cursor"></span>
         </div>
 
@@ -112,8 +102,8 @@ const settings = await getPortfolioSettings();
 </section>
 
 <script is:inline>
-  // Particles Canvas Logic
-  (function initParticles() {
+  // Particles Canvas Logic (Deferred for 95+ PageSpeed)
+  function initParticles() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -123,10 +113,10 @@ const settings = await getPortfolioSettings();
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
-    });
+    }, { passive: true });
 
     const particles = [];
-    const count = Math.min(Math.floor(window.innerWidth / 22), 60);
+    const count = Math.min(Math.floor(window.innerWidth / 28), 45);
 
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -144,11 +134,12 @@ const settings = await getPortfolioSettings();
       const rect = canvas.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
       mouse.y = e.clientY - rect.top;
-    });
+    }, { passive: true });
+
     window.addEventListener('mouseleave', () => {
       mouse.x = null;
       mouse.y = null;
-    });
+    }, { passive: true });
 
     function draw() {
       ctx.clearRect(0, 0, width, height);
@@ -180,8 +171,16 @@ const settings = await getPortfolioSettings();
       }
       requestAnimationFrame(draw);
     }
-    draw();
-  })();
+    requestAnimationFrame(draw);
+  }
+
+  if (typeof window !== 'undefined') {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initParticles);
+    } else {
+      window.addEventListener('load', initParticles);
+    }
+  }
 
   // Typing Effect
   (function initTyping() {

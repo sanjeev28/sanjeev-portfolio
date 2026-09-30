@@ -39,10 +39,10 @@ const testimonials = await getTestimonials();
       <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
         <div id="testimonial-dots" class="flex items-center gap-2"></div>
         <div class="flex items-center gap-3">
-          <button id="prev-testimonial" class="w-10 h-10 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+          <button id="prev-testimonial" aria-label="Previous Testimonial" class="w-10 h-10 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
             <i class="fa-solid fa-chevron-left text-sm"></i>
           </button>
-          <button id="next-testimonial" class="w-10 h-10 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
+          <button id="next-testimonial" aria-label="Next Testimonial" class="w-10 h-10 rounded-xl border border-slate-800 bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer">
             <i class="fa-solid fa-chevron-right text-sm"></i>
           </button>
         </div>

@@ -70,6 +70,7 @@ if (limit) {
               rel="noopener noreferrer" 
               class="absolute top-4 right-4 px-2.5 py-1 rounded-lg bg-slate-950/70 border border-slate-700/80 text-[11px] font-medium text-slate-300 hover:text-white hover:border-indigo-400 transition-all flex items-center gap-1.5 backdrop-blur-md shadow-sm"
               title="Visit live site"
+              aria-label={`Visit live site ${p.title}`}
             >
               <span>Live Site</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-indigo-400"></i>
@@ -101,7 +102,7 @@ if (limit) {
                 {p.results?.split('•')[0] || '100% Responsive'}
               </span>
               <div class="flex items-center gap-2">
-                <button class="view-case-study text-xs text-slate-300 hover:text-white font-semibold flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors cursor-pointer">
+                <button class="view-case-study text-xs text-slate-300 hover:text-white font-semibold flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors cursor-pointer" aria-label={`View case study details for ${p.title}`}>
                   Details <i class="fa-solid fa-circle-info text-xs text-indigo-400"></i>
                 </button>
                 <a 
@@ -110,6 +111,7 @@ if (limit) {
                   rel="noopener noreferrer" 
                   class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 transition-colors"
                   title="Open live website"
+                  aria-label={`Open live website for ${p.title}`}
                 >
                   <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                 </a>

@@ -374,7 +374,7 @@ export async function getServices() {
 export async function getPortfolioSettings() {
   const defaultSettings = {
     hero_badge: 'Available for Q4 Projects / Full-Stack & Headless Architect',
-    hero_headline: 'Senior WordPress, Elementor & Shopify Architect',
+    hero_headline: 'Designing High-Impact Web & E-Commerce Experiences.',
     hero_primary_btn_text: 'Explore Selected Works',
     hero_primary_btn_link: '/portfolio',
     hero_secondary_btn_text: 'Instant Cost Estimator',
