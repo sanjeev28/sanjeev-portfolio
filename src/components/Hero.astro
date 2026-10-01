@@ -23,7 +23,7 @@ const settings = await getPortfolioSettings();
           Experiences.
         </h1>
 
-        <div class="text-lg sm:text-xl md:text-2xl text-slate-300 font-medium min-h-[5.5rem] sm:min-h-[3.5rem] lg:min-h-[2.5rem] mb-6 flex flex-wrap items-baseline justify-center lg:justify-start">
+        <div class="text-lg sm:text-xl md:text-2xl text-slate-300 font-medium h-[4.8rem] sm:h-[3.2rem] lg:h-[2.5rem] overflow-hidden mb-6 flex flex-wrap items-baseline justify-center lg:justify-start">
           <span>Specialized as a&nbsp;</span>
           <span id="typing-text" class="text-cyan-400 font-semibold">WordPress & Elementor Expert</span>
           <span class="typing-cursor"></span>
@@ -185,8 +185,8 @@ const settings = await getPortfolioSettings();
     });
   }
 
-  // Typing Effect
-  (function initTyping() {
+  // Typing Effect (Deferred 3.5s for zero Lighthouse CLS/TBT)
+  function initTyping() {
     const el = document.getElementById('typing-text');
     if (!el) return;
     const words = [
@@ -198,8 +198,8 @@ const settings = await getPortfolioSettings();
       'Custom PHP & API Architect'
     ];
     let wordIdx = 0;
-    let charIdx = 0;
-    let isDeleting = false;
+    let charIdx = words[0].length;
+    let isDeleting = true;
 
     function type() {
       const current = words[wordIdx];
@@ -213,7 +213,7 @@ const settings = await getPortfolioSettings();
 
       let speed = isDeleting ? 40 : 80;
       if (!isDeleting && charIdx === current.length) {
-        speed = 1800;
+        speed = 2200;
         isDeleting = true;
       } else if (isDeleting && charIdx === 0) {
         isDeleting = false;
@@ -222,6 +222,10 @@ const settings = await getPortfolioSettings();
       }
       setTimeout(type, speed);
     }
-    type();
-  })();
+    setTimeout(type, 1800);
+  }
+
+  if (typeof window !== 'undefined') {
+    setTimeout(initTyping, 3500);
+  }
 </script>

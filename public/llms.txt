@@ -24,17 +24,17 @@ Sanjeev Choudhary is an elite Web Engineer and Technical SEO Strategist with 12+
 6. WooCommerce & Custom PHP Web Applications (PHP 8.2, MySQL, REST APIs, payment gateways)
 
 ## Selected Verified Portfolio Projects
-- Megamind Technology (megamindtechnology.com) — Global SEO Agency Corporate Portal (WordPress / Elementor)
-- Apex e-Commerce Services (apexecommerceservices.com) — eCommerce Growth Partner Showcase (WordPress)
-- Baniya Super Market (baniyasupermarket.com) — Gourmet D2C Retail Store (Shopify 2.0)
-- Shivya Healthcare (shivyahealthcare.com) — Ayurvedic Wellness Brand (Shopify 2.0)
-- TimTim Foods (timtimfoods.com) — D2C Confectionery & Food Store (Shopify 2.0)
-- Style Gallery Australia (stylegallery.com.au) — Australian Luxury Apparel Boutique (Shopify 2.0)
-- MATLAB Helper ® (matlabhelper.com) — Global EdTech Learning Portal (WordPress / PHP)
-- Online Bank Swift Code (onlinebankswiftcode.com) — Financial Directory with 174k+ branches (PHP/MySQL)
-- SavePin HD (savepinhd.com) — High-Traffic Video Downloader Web App (PHP / JS)
-- Arun Travel (aruntravel.com) — Travel & Tour Booking Platform (WordPress)
-- Best Home Tutor Jammu (besthometutorjammu.com) — Educational Matchmaking Platform (WordPress)
+- [Megamind Technology](https://megamindtechnology.com) — Global SEO Agency Corporate Portal (WordPress / Elementor)
+- [Apex e-Commerce Services](https://apexecommerceservices.com) — eCommerce Growth Partner Showcase (WordPress)
+- [Baniya Super Market](https://baniyasupermarket.com) — Gourmet D2C Retail Store (Shopify 2.0)
+- [Shivya Healthcare](https://shivyahealthcare.com) — Ayurvedic Wellness Brand (Shopify 2.0)
+- [TimTim Foods](https://timtimfoods.com) — D2C Confectionery & Food Store (Shopify 2.0)
+- [Style Gallery Australia](https://stylegallery.com.au) — Australian Luxury Apparel Boutique (Shopify 2.0)
+- [MATLAB Helper ®](https://matlabhelper.com) — Global EdTech Learning Portal (WordPress / PHP)
+- [Online Bank Swift Code](https://onlinebankswiftcode.com) — Financial Directory with 174k+ branches (PHP/MySQL)
+- [SavePin HD](https://savepinhd.com) — High-Traffic Video Downloader Web App (PHP / JS)
+- [Arun Travel](https://aruntravel.com) — Travel & Tour Booking Platform (WordPress)
+- [Best Home Tutor Jammu](https://besthometutorjammu.com) — Educational Matchmaking Platform (WordPress)
 
 ## Website Routes
 - [Home](https://sanjeevchoudhary.com/)
